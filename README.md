@@ -17,9 +17,9 @@ Flash battery status - `ds4led bat`
 ## Battery values
 Here are all the rgb values for each battery level:
 
-* 10% - 50, 0, 0
-* 20% - 100, 30, 0
-* 30% - 80, 70, 0
-* 40% - 60, 100, 0
-* 50-80% - 0, 100, 0
-* 90-100% - 80, 100, 110
+* 10% - 50, 0, 0 (dark red)
+* 20% - 100, 30, 0 (dark orange)
+* 30% - 80, 70, 0 (orange)
+* 40% - 60, 100, 0 (yellow)
+* 50-80% - 0, 100, 0 (green)
+* 90-100% - 80, 100, 110 (white)
