@@ -2,8 +2,8 @@
 #### Note: This is Linux only. You're welcome to fork this and adapt the bash script to Windows.
 DualShock 4 LED color and battery utility  
 Requires python and upower  
-Uses code from (upower-python)[https://github.com/wogscpar/upower-python]  
-Bash script based off of (ds4led)[https://gist.github.com/jacobmischka/7f96f3fddf93dbe21db2] by (jacobmischka)[https://github.com/jacobmischka]
+Uses code from [upower-python](https://github.com/wogscpar/upower-python)  
+Bash script based off of [ds4led](https://gist.github.com/jacobmischka/7f96f3fddf93dbe21db2) by [jacobmischka](https://github.com/jacobmischka)
 
 ## Installation
 Copy both scripts to /usr/local/bin, and then run `sudo ds4led` at least once in terminal with the controller connected to set file permissions correctly.  
