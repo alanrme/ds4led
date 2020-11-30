@@ -1,0 +1,57 @@
+#!/bin/bash
+# This isn't really that safe to blindly run,
+# as it uses sudo to change system file permissions.
+# Hopefully it shouldn't break anything though.
+# Usage: ds4led [r value] [g value] [b value]
+# or `ds4led orange` to set it to orange.
+
+DS4="0005:054C:09CC.*"
+
+cd /sys/class/leds
+FILES=("$DS4:*/brightness")
+for FILE in $FILES; do
+	if [[ $(stat -c "%a" $FILE) != 777 ]]; then
+		chmod 777 $FILE
+	fi
+done
+
+if [[ $# > 0 ]]; then
+	if [[ "$1" == "orange" ]]; then
+		echo 150 > $DS4:red/brightness
+		echo 50 > $DS4:green/brightness
+		echo 0 > $DS4:blue/brightness
+	elif [[ "$1" == "pink" ]]; then
+		echo 150 > $DS4:red/brightness
+        echo 50 > $DS4:green/brightness
+        echo 99 > $DS4:blue/brightness
+	elif [[ "$1" == "green" ]]; then
+		echo 0 > $DS4:red/brightness
+        echo 150 > $DS4:green/brightness
+        echo 0 > $DS4:blue/brightness
+	elif [[ "$1" == "red" ]]; then
+		echo 150 > $DS4:red/brightness
+        echo 0 > $DS4:green/brightness
+        echo 0 > $DS4:blue/brightness
+	elif [[ "$1" == "white" ]]; then
+		echo 90 > $DS4:red/brightness
+        echo 100 > $DS4:green/brightness
+        echo 100 > $DS4:blue/brightness
+	elif [[ "$1" == "off" ]]; then
+		echo 0 > $DS4:red/brightness
+        echo 0 > $DS4:green/brightness
+        echo 0 > $DS4:blue/brightness
+	elif [[ "$1" == "bat" ]]; then
+		red=`cat $DS4:red/brightness`
+		grn=`cat $DS4:green/brightness`
+		blu=`cat $DS4:blue/brightness`
+		python /usr/local/bin/ds4bat.py $red $grn $blu
+    else
+		echo $1 > $DS4:red/brightness
+	fi
+fi
+if [[ $# > 1 ]]; then
+	echo $2 > $DS4:green/brightness
+fi
+if [[ $# > 2 ]]; then
+	echo $3 > $DS4:blue/brightness
+fi
